@@ -1,0 +1,87 @@
+﻿@page "/signin"
+@using RmsApp.Services
+@using RmsApp.Dtos
+@inject ILogger<AuthService> logger
+@inject IFlashMessageService FlashMessageService
+@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
+<PageTitle>Signin</PageTitle>
+
+<div class="d-flex align-items-center justify-content-center mt-5">
+    <div class="px-5 col-md-6">
+        <div class="px-5 col-10 mx-auto">
+            <h2 class="text-dark my-0"><i class="fa fa-utensils text-danger"></i> Restaurant Admin, Welcome! </h2>
+            @if (!string.IsNullOrEmpty(FlashMessageService.SuccessMessage))
+            {
+                <div class="alert alert-success">
+                    @FlashMessageService.SuccessMessage
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
+            {
+                <div class="alert alert-danger">
+                    @FlashMessageService.FailureMessage
+                </div>
+            }
+            @if (!AuthService.IsLoggedIn)
+            {
+                <p class="text-50">Sign in to continue</p>
+                <form class="mt-5 mb-4" @onsubmit="async () => await OnSigninAsync()">
+                    <div class="form-group mb-3">
+                        <label class="text-dark">Email</label>
+                        <input type="text" placeholder="" class="form-control" @bind-value="loginModel.UserName"/>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="text-dark">Password</label>
+                        <input type="password" placeholder="" class="form-control" @bind-value="loginModel.Password"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">SIGN IN</button>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <br>
+                <p>You have already logged in.</p>
+            }
+            <br>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private LoginDto loginModel = new LoginDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        logger.LogInformation("Sign in OnInitializedAsync");
+    }
+
+    private async Task ClearMessageAsync()
+    {
+        logger.LogInformation("clearing");
+        await FlashMessageService.ClearMessagesAsync();
+    }
+
+    private async Task OnSigninAsync()
+    {
+        bool result = await AuthService.LoginAsync(loginModel.UserName, loginModel.Password);
+        if (result)
+        {
+            FlashMessageService.SetSuccessMessage("Successfully logged in..");
+            NavigationManager.NavigateTo("/edit");
+            await ClearMessageAsync();
+        }
+        else
+        {
+            FlashMessageService.SetFailureMessage("Login failed. Please try again.");
+            await ClearMessageAsync();
+        } 
+    }
+
+}

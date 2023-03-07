@@ -1,0 +1,80 @@
+﻿@page "/category/edit/{categoryId}"
+@using RmsApp.Services
+@using RmsApp.Dtos
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@using Microsoft.Extensions.Logging
+@inject ILogger<CategoryService> logger
+@inject IFlashMessageService FlashMessageService
+@inject AuthService authService
+
+<h1>Category Edit</h1>
+<ul class="breadcrumb breadcrumb-gray">
+    @foreach (var path in Paths)
+    {
+             <li class="breadcrumb-item"><NavLink href="@path.Path">@path.Title</NavLink></li>
+    }
+</ul>
+
+@if (Category != null)
+{
+    <form>
+        <div class="form-group mb-3">
+            <label for="id">ID:</label>
+            <input type="text" id="id" class="form-control" value="@Category.Id" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" value="@Category.Name" @oninput="@(e => Category.Name = e.Value.ToString())" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" @onclick:preventDefault="true" @onclick="SaveCategory">Save</button>
+        </div>
+        
+    </form>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    public List<TabPath> Paths = new List<TabPath>
+        {
+        new TabPath { Title = "Home", Path = "/" },
+        new TabPath { Title = "Category", Path = "/category" },
+        new TabPath { Title = "Edit", Path = "/category/Edit/{categoryId}" },
+        };
+    [Parameter]
+    public string categoryId { get; set; }
+
+    public CategoryDto Category { get; set; }
+
+    [Inject]
+    public ICategoryService CategoryService { get; set; }
+
+     private async Task ClearMessageAsync()
+    {
+        logger.LogInformation("clearing");
+        await FlashMessageService.ClearMessagesAsync();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        logger.LogInformation("OnInitializedAsync");
+
+        if (string.IsNullOrEmpty(categoryId))
+        {
+            NavigationManager.NavigateTo("/category");
+        }
+
+        Category = await CategoryService.GetCategoryAsync(categoryId);
+    }
+
+    private async Task SaveCategory()
+    {
+        await CategoryService.UpdateCategoryAsync(Category);
+         FlashMessageService.SetSuccessMessage("Category edit successfully!");
+        NavigationManager.NavigateTo("/category");
+        await ClearMessageAsync();
+    }
+}

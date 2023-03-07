@@ -1,0 +1,169 @@
+﻿@* @page "/edit/{id}" *@
+@page "/edit"
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using RmsApp.Services
+@using RmsApp.Dtos
+@inject IFlashMessageService FlashMessageService
+@inject AuthService authService
+@inject ILogger<AuthService> logger
+@using System.ComponentModel.DataAnnotations
+
+
+
+
+<PageTitle>Edit Profile</PageTitle>
+
+@if (restaurant != null)
+{
+    <h2>@restaurant.Name</h2>
+      @if (!string.IsNullOrEmpty(FlashMessageService.SuccessMessage))
+            {
+                <div class="alert alert-success">
+                    @FlashMessageService.SuccessMessage
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
+            {
+                <div class="alert alert-danger">
+                    @FlashMessageService.FailureMessage
+                </div>
+            }
+    <EditForm Model="@restaurant" OnValidSubmit="UpdateRestaurant">
+          <DataAnnotationsValidator />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label>Name</label>
+                    <InputText class="form-control" @bind-Value="restaurant.Name" />
+                    <ValidationMessage For="@(() => restaurant.Name)" />
+                </div>
+                <div class="form-group mb-3">
+                    <label>Description</label>
+                    <InputText class="form-control" @bind-Value="restaurant.Description" />
+                    <ValidationMessage For="@(() => restaurant.Description)" />
+                </div>
+                <div class="form-group mb-3">
+                    <label>Phone Number</label>
+                    <InputText class="form-control" @bind-Value="restaurant.PhoneNo" />
+                    <ValidationMessage For="@(() => restaurant.PhoneNo)" />
+                </div>
+                <div class="form-group mb-3">
+                    <label>Email</label>
+                    <InputText class="form-control" @bind-Value="restaurant.Email" />
+                    <ValidationMessage For="@(() => restaurant.Email)" />
+                </div>
+                 <div class="form-group mb-3">
+                    <label>Restaurant Cover Logo</label>
+                    <InputFile OnChange="OnFileChange" />
+                      @* <img src="@(restaurant.Logo != null ? $"/img/{restaurant.Logo}" : null)" width="100px" height="100px"/> *@
+                      <img src="@(restaurant.Logo != null ? $"{Constants.imgUrl}/{restaurant.Logo}" : null)" width="100px" height="100px"/>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                  @if (restaurant.Address != null)
+                {
+                    <div class="form-group mb-3">
+                        <label>Address</label>
+                    <div>
+                        <div class="form-group mb-3">
+                            <label>Street</label>
+                            <InputText class="form-control" @bind-Value="restaurant.Address.Street" />
+                            <ValidationMessage For="@(() => restaurant.Address.Street)" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>City</label>
+                            <InputText class="form-control" @bind-Value="restaurant.Address.City" />
+                            <ValidationMessage For="@(() => restaurant.Address.City)" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>State</label>
+                            <InputText class="form-control" @bind-Value="restaurant.Address.State" />
+                            <ValidationMessage For="@(() => restaurant.Address.State)" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Postal Code</label>
+                            <InputText class="form-control" @bind-Value="restaurant.Address.PostalCode" />
+                            <ValidationMessage For="@(() => restaurant.Address.PostalCode)" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Country</label>
+                            <InputText class="form-control" @bind-Value="restaurant.Address.Country" />
+                            <ValidationMessage For="@(() => restaurant.Address.Country)" />
+                        </div>
+                    </div>
+                </div> 
+                }
+                <button type="submit" class="btn btn-primary" @onclick:preventDefault="true">Save Changes</button>
+
+            </div>
+        </div>
+    </EditForm>
+}
+else
+{
+    <p>No Restaurant Data</p>
+}
+
+@code {
+    private RestaurantDto restaurant;
+    
+    [Inject]
+    public IRestaurantService RestaurantService { get; set; }
+
+     private IBrowserFile UploadImg { get; set; }
+
+     private async Task OnFileChange(InputFileChangeEventArgs e)
+    {
+        UploadImg = e.File;
+    }
+     private async Task ClearMessageAsync()
+    {
+        logger.LogInformation("clearing");
+        await FlashMessageService.ClearMessagesAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AuthService.IsLoggedIn)
+        {
+            NavigationManager.NavigateTo("/signin");
+            return;
+        }
+        string id = AuthService.User.RestaurantId;
+        logger.LogInformation("print from edit page logged in status: " + AuthService.IsLoggedIn.ToString());
+        restaurant = await RestaurantService.GetOneRestaurantAsync(id);
+    }
+
+    private async Task UpdateRestaurant()
+    {
+        var newRestaurant = new RestaurantDto
+        { 
+            Id = restaurant.Id,
+            Name = restaurant.Name,
+            Email = restaurant.Email,
+            Description = restaurant.Description,
+            PhoneNo = restaurant.PhoneNo,
+            CategoryId = restaurant.CategoryId,
+            Address = restaurant.Address, 
+            UploadImg = UploadImg
+        }; 
+        
+        if (UploadImg != null)
+        {
+            var imgContent = new StreamContent(UploadImg.OpenReadStream());
+            imgContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(UploadImg.ContentType);
+        }
+    
+        await RestaurantService.UpdateRestaurantAsync(newRestaurant);
+        
+        FlashMessageService.SetSuccessMessage("updated successfully");
+        NavigationManager.NavigateTo("/");
+        await FlashMessageService.ClearMessagesAsync();
+        
+    }
+
+
+    }

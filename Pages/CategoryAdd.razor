@@ -1,0 +1,79 @@
+﻿@page "/category/add"
+
+@using RmsApp.Services
+@using RmsApp.Dtos
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@using Microsoft.Extensions.Logging
+@inject ILogger<CategoryService> logger
+@inject IFlashMessageService FlashMessageService  
+@inject AuthService authService
+
+
+<ul class="breadcrumb breadcrumb-gray">
+    @foreach (var path in Paths)
+    {
+             <li class="breadcrumb-item"><NavLink href="@path.Path">@path.Title</NavLink></li>
+    }
+</ul>
+@if (!string.IsNullOrEmpty(FlashMessageService.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @FlashMessageService.SuccessMessage
+    </div>
+}
+else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
+{
+    <div class="alert alert-danger">
+        @FlashMessageService.FailureMessage
+    </div>
+}
+<div class="form-group col-12">
+    <form @onsubmit="AddCategory">
+         <div class="form-group mb-3">
+          <label >Category Name</label>
+          <input class="form-control" @bind="NewCategoryName" />
+        <span class="text-danger"></span>
+       </div>
+       <div class="text-center">
+         <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+   </form>
+</div>
+ 
+
+@code {
+    public List<TabPath> Paths = new List<TabPath>
+        {
+        new TabPath { Title = "Home", Path = "/" },
+        new TabPath { Title = "Category", Path = "/category" },
+        new TabPath { Title = "Add", Path = "/category/add" },
+        };
+
+    [Inject]
+    public ICategoryService CategoryService { get; set; }
+
+    public string NewCategoryName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        logger.LogInformation("OnInitializedAsync");
+
+    } 
+     private async Task ClearMessageAsync()
+    {
+        logger.LogInformation("clearing");
+        await FlashMessageService.ClearMessagesAsync();
+    }
+    private async Task AddCategory()
+    {
+        string restaurantId = AuthService.User.RestaurantId;
+        var newCategory = new CategoryDto { Name = NewCategoryName };
+        await CategoryService.AddCategoryAsync(restaurantId, newCategory);
+        FlashMessageService.SetSuccessMessage(" Add successfully!");
+        NavigationManager.NavigateTo("/category");
+        await ClearMessageAsync(); 
+        @* NewCategoryName = string.Empty; *@
+    }
+}
+

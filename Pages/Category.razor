@@ -1,0 +1,96 @@
+﻿@page "/category"
+
+@using RmsApp.Services
+@using RmsApp.Dtos
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@using Microsoft.Extensions.Logging
+@inject ILogger<CategoryService> logger
+@inject IFlashMessageService FlashMessageService 
+@inject AuthService authService 
+
+
+<ul class="breadcrumb breadcrumb-gray">
+    @foreach (var path in Paths)
+    {
+             <li class="breadcrumb-item"><NavLink href="@path.Path">@path.Title</NavLink></li>
+    }
+</ul>
+
+@if (!string.IsNullOrEmpty(FlashMessageService.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @FlashMessageService.SuccessMessage
+    </div>
+}
+else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
+{
+    <div class="alert alert-danger">
+        @FlashMessageService.FailureMessage
+    </div>
+}
+
+<div class="row pb-3">
+            <div class="col-2">
+                <a class="btn btn-icon-only btn-pill btn-primary" href="/category/Add"><i class="fa fa-plus"></i></a>
+            </div>
+</div>
+<br>
+
+@if (Categories != null && Categories.Any())
+{
+    <table class="table table-hover shadow-inset table-responsive-xl rounded table-striped">
+        <thead class="text-danger font-weight-bold">
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Categories)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td><a class="btn btn-icon-only btn-pill btn-primary" href="/category/edit/@category.Id"><i class="fa fa-pen"></i></a></td>
+                    <td><a class="btn btn-icon-only btn-pill btn-primary" href="/category/delete/@category.Id"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No categories found.</p>
+}
+
+@code {
+    public List<TabPath> Paths = new List<TabPath>
+        {
+        new TabPath { Title = "Home", Path = "/" },
+        new TabPath { Title = "Category", Path = "/category" },
+        };
+    public List<CategoryDto> Categories { get; set; }
+    @* public string restaurantId = AuthService.User.RestaurantId; *@
+    public string restaurantId; 
+
+
+    [Inject]
+    public ICategoryService CategoryService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+         if (!AuthService.IsLoggedIn)
+        {
+            NavigationManager.NavigateTo("/signin");
+            return;
+        }
+        logger.LogInformation("category list OnInitializedAsync");
+        restaurantId = AuthService.User.RestaurantId; 
+        Categories = (await CategoryService.ListCategoryAsync(restaurantId)).ToList();
+        
+    } 
+}
+
