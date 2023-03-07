@@ -9,85 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = RmsApp
 build_property.RootNamespace = RmsApp
-build_property.ProjectDir = C:\Users\Yi Ding\Documents\C#\IntegrationProject_FoodOrderingSystem\RNV2-Frontend\RmsApp\
+build_property.ProjectDir = C:\Users\Yi Ding\Documents\C#\RestaurantManagementSystem\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Yi Ding\Documents\C#\IntegrationProject_FoodOrderingSystem\RNV2-Frontend\RmsApp
+build_property.MSBuildProjectDirectory = C:\Users\Yi Ding\Documents\C#\RestaurantManagementSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/App.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/Category.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/Category.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/CategoryAdd.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/CategoryAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlBZGQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/CategoryDelete.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/CategoryDelete.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlEZWxldGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/CategoryEdit.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/CategoryEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlFZGl0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/DeliveryOrder.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/DeliveryOrder.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsaXZlcnlPcmRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/EditProfile.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/EditProfile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2ZpbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/Index.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/Item.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/Item.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSXRlbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/ItemAdd.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/ItemAdd.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSXRlbUFkZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/ItemDelete.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/ItemDelete.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSXRlbURlbGV0ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/ItemEdit.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/ItemEdit.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSXRlbUVkaXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/Signin.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/Signin.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbmluLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/Statistics.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/Statistics.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlzdGljcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Pages/TakeawayOrder.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Pages/TakeawayOrder.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFrZWF3YXlPcmRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Shared/SurveyPrompt.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/_Imports.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Shared/MainLayout.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-tdprzub835
 
-[C:/Users/Yi Ding/Documents/C\#/IntegrationProject_FoodOrderingSystem/RNV2-Frontend/RmsApp/Shared/NavMenu.razor]
+[C:/Users/Yi Ding/Documents/C\#/RestaurantManagementSystem/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-39sc3qhddr
