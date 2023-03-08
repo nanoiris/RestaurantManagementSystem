@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\RmsApp.csproj": {}
+    "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\RmsApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\RmsApp.csproj": {
+    "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\RmsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\RmsApp.csproj",
+        "projectUniqueName": "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\RmsApp.csproj",
         "projectName": "RmsApp",
-        "projectPath": "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\RmsApp.csproj",
+        "projectPath": "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\RmsApp.csproj",
         "packagesPath": "C:\\Users\\Yi Ding\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\obj\\",
+        "outputPath": "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W/gSTXNKKher7z8lrv2utsacCQV1xajmFhcuzOqJA1WfD2GwXwjA6/bzETDaZXBoWy7zrv4ZFmQv3dm3q+gMRA==",
+  "dgSpecHash": "j2Puaoy4n/dncamp4N0Lwqb1f6wcNUQmOFNwDi+QfcSQWNzLQQ5vbn5tWQ+ptjtFwZ9awJnP9+J9nuqyiKChmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Yi Ding\\Documents\\C#\\IntegrationProject_FoodOrderingSystem\\RNV2-Frontend\\RmsApp\\RmsApp.csproj",
+  "projectFilePath": "C:\\Users\\Yi Ding\\Documents\\C#\\RestaurantManagementSystem\\RmsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yi Ding\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\Yi Ding\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.3\\microsoft.aspnetcore.authorization.7.0.3.nupkg.sha512",
