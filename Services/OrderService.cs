@@ -38,6 +38,7 @@ namespace RmsApp.Services
                     _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 }
 
+                // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/order/ListByRestaurantAndStatus", new { restaurantId, status });
                 if (response.IsSuccessStatusCode)
 
@@ -57,6 +58,35 @@ namespace RmsApp.Services
 
             return orders;
         }
+        // public async Task<List<OrderListDto>> ListOrderNoHeaderAsync(string restaurantId, int status)
+        // {
+        //     List<OrderListDto> orders = new List<OrderListDto>();
+        //     try
+        //     {
+        //         if (!_httpClient.DefaultRequestHeaders.Contains("Authorization"))
+        //         {
+        //             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
+        //         }
+
+        //         HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/order/ListByRestaurantAndStatus", new { restaurantId, status });
+        //         if (response.IsSuccessStatusCode)
+
+        //         {
+        //             Console.WriteLine("200 order status: ");
+        //             orders = await response.Content.ReadFromJsonAsync<List<OrderListDto>>();
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("Failed to get orders. Status code: {0}", response.StatusCode);
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine("Failed to get orders. Error: {0}", ex.Message);
+        //     }
+
+        //     return orders;
+        // }
         public async Task<bool> UpdateOrderStatusAsync(string orderId, int status)
         {
             var model = new OrderStatusDto { OrderId = orderId, Status = status };

@@ -35,27 +35,27 @@ else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
 
 <div class="p-3 rounded bg-white">
      <div class="p-3 rounded shadow-sm bg-white">
-            <form class="col-12 mb-4 row">
+            @* <form class="col-12 mb-4 row"> *@
                 <div class="d-flex justify-content-center">
                      <div class="col-1">
-                        <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px" @onclick:preventDefault="true" @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Paid)">Paid</button>
+                        <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px"  @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Paid)">Paid</button>
                         </div>
              <div class="col-1">
-                <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px"  @onclick:preventDefault="true" @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Accepted)">Accepted</button>
+                <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px"   @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Accepted)">Accepted</button>
             </div>
             <div class="col-1">
-                <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px" @onclick:preventDefault="true" @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Ready)">Ready</button>
+                <button class="btn btn-icon-only btn-pill btn-warning" style="width: 100px"  @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Ready)">Ready</button>
             </div>
             <div class="col-1">
-                <button class="btn btn-icon-only btn-pill btn-success" style="width: 100px" @onclick:preventDefault="true" @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Completed)">Completed</button>
+                <button class="btn btn-icon-only btn-pill btn-success" style="width: 100px"  @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Completed)">Completed</button>
             </div>
             <div class="col-1">
-                <button class="btn btn-icon-only btn-pill btn-primary" style="width: 100px" @onclick:preventDefault="true" @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Canceled)">Canceled</button>
+                <button class="btn btn-icon-only btn-pill btn-primary" style="width: 100px"  @onclick="async () => await LoadOrdersByStatus((int)StatusEnum.Canceled)">Canceled</button>
             </div> 
                 </div>
               
 
-           </form>
+           @* </form> *@
         </div>
             
            @if (TakeAwayOrders != null && TakeAwayOrders.Any())

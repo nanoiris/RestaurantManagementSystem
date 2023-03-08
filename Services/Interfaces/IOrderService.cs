@@ -8,6 +8,7 @@ namespace RmsApp.Services
     public interface IOrderService
     {
         Task<List<OrderListDto>> ListOrderAsync(string restaurantId, int status);
+        // Task<List<OrderListDto>> ListOrderNoHeaderAsync(string restaurantId, int status);
         Task<bool> UpdateOrderStatusAsync(string orderId, int status);
         Task<OrderListDto> GetOrderAsync(string orderId);
         // Task<OrderDetailDto> FindOrderByIdAsync(int restaurantId, int orderId);
