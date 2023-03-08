@@ -33,6 +33,7 @@ namespace RmsApp.Services
             List<OrderListDto> orders = new List<OrderListDto>();
             try
             {
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/order/ListByRestaurantAndStatus", new { restaurantId, status });
                 if (response.IsSuccessStatusCode)
 
@@ -55,6 +56,7 @@ namespace RmsApp.Services
         public async Task<bool> UpdateOrderStatusAsync(string orderId, int status)
         {
             var model = new OrderStatusDto { OrderId = orderId, Status = status };
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.PutAsJsonAsync("api/Order/OrderStatus", model);
 
             return response.IsSuccessStatusCode;
@@ -62,6 +64,7 @@ namespace RmsApp.Services
 
         public async Task<OrderListDto> GetOrderAsync(string orderId)
         {
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.GetAsync($"api/order/one/{orderId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<OrderListDto>();

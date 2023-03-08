@@ -57,6 +57,7 @@ namespace RmsApp.Services
                 img.Headers.ContentType = new MediaTypeHeaderValue(menuItem.UploadImg.ContentType);
                 multipartContent.Add(content: img, "UploadImg", fileName: menuItem.UploadImg.Name);
                 // above are the 3 line for attach images 
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 var response = await _httpClient.PostAsync($"api/menu/NewOne/{restaurantId}", multipartContent);
                 Console.WriteLine("add menu, after post");
                 if (response.IsSuccessStatusCode)
@@ -87,6 +88,7 @@ namespace RmsApp.Services
                 throw new ArgumentException("Item ID cannot be null or empty.", nameof(itemId));
             }
             Console.WriteLine("get item service...");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.GetAsync($"api/menu/one/{categoryId}/{itemId}");
             if (response.IsSuccessStatusCode)
             {
@@ -102,9 +104,11 @@ namespace RmsApp.Services
         {
             Console.WriteLine("Enter Category List Service Log...");
             Categories = new List<CategoryDto>();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             HttpResponseMessage response = await _httpClient.GetAsync($"api/MenuCategory/List/{restaurantId}");
             if (response.IsSuccessStatusCode)
             {
+                // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 Categories = await response.Content.ReadFromJsonAsync<List<CategoryDto>>();
             }
             else
@@ -139,6 +143,7 @@ namespace RmsApp.Services
                 img.Headers.ContentType = new MediaTypeHeaderValue(menuItem.UploadImg.ContentType);
                 multipartContent.Add(content: img, "UploadImg", fileName: menuItem.UploadImg.Name);
                 // above are the 3 line for attach images 
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 var response = await _httpClient.PutAsync($"api/menu/updatedone", multipartContent);
                 Console.WriteLine("edit menu, after PUT");
                 if (response.IsSuccessStatusCode)
@@ -160,6 +165,7 @@ namespace RmsApp.Services
         public async Task DeleteItemAsync(string categoryId, string id)
         {
             Console.WriteLine("Enter item delete service ...");
+            // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.DeleteAsync($"api/menu/deletedOne/{categoryId}/{id}");
             if (!response.IsSuccessStatusCode)
             {

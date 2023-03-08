@@ -38,6 +38,7 @@ namespace RmsApp.Services
         {
             Console.WriteLine("Enter CategoryListService Log...");
             Categories = new List<CategoryDto>();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             HttpResponseMessage response = await _httpClient.GetAsync($"api/MenuCategory/List/{restaurantId}");
             if (response.IsSuccessStatusCode)
             {
@@ -61,6 +62,7 @@ namespace RmsApp.Services
                     Name = category.Name,
                     RestaurantId = restaurantId
                 };
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
                 var response = await _httpClient.PostAsJsonAsync("api/menucategory/NewOne", newCategory);
                 if (response.IsSuccessStatusCode)
                 {
@@ -84,6 +86,7 @@ namespace RmsApp.Services
             {
                 throw new ArgumentException("Category ID cannot be null or empty.", nameof(categoryId));
             }
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.GetAsync($"api/menucategory/one/{categoryId}");
             if (response.IsSuccessStatusCode)
             {
@@ -100,6 +103,7 @@ namespace RmsApp.Services
             {
                 throw new ArgumentNullException(nameof(categoryDto));
             }
+            // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.PutAsJsonAsync($"api/menucategory/updatedone/{categoryDto.Id}", categoryDto);
             if (!response.IsSuccessStatusCode)
             {
@@ -113,6 +117,7 @@ namespace RmsApp.Services
 
         public async Task DeleteCategoryAsync(string categoryId)
         {
+            // _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AuthService.User.Token}");
             var response = await _httpClient.DeleteAsync($"api/menucategory/deletedone/{categoryId}");
             if (!response.IsSuccessStatusCode)
             {

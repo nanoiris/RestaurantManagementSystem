@@ -87,7 +87,7 @@ else
             NavigationManager.NavigateTo("/signin");
             return;
         }
-        logger.LogInformation("category list OnInitializedAsync");
+        logger.LogInformation("category list OnInitializedAsync"+AuthService.User.Role);
         restaurantId = AuthService.User.RestaurantId; 
         Categories = (await CategoryService.ListCategoryAsync(restaurantId)).ToList();
         
