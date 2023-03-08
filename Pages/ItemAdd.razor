@@ -102,10 +102,11 @@ else if (!string.IsNullOrEmpty(FlashMessageService.FailureMessage))
     public string NewItemCategoryId { get; set; } = "";
 
 
-    public string restaurantId = AuthService.User.RestaurantId;
+    public string restaurantId;
 
     protected override async Task OnInitializedAsync()
     {
+        restaurantId = AuthService.User.RestaurantId;
         Categories = await CategoryService.ListCategoryAsync(restaurantId);
     }
     private IBrowserFile UploadImg { get; set; }

@@ -112,7 +112,7 @@ else
     new TabPath { Title = "Edit", Path = "/Item/Edit/{categoryId}/{itemId}" },
 };
     public ItemEditDto Item { get; set; }
-    public string restaurantId = Constants.RestaurantId; 
+    public string restaurantId; 
 
 
     public List<CategoryDto> Categories = new List<CategoryDto>();
@@ -124,6 +124,7 @@ else
     }
     protected override async Task OnInitializedAsync()
     {
+        restaurantId = AuthService.User.RestaurantId; 
         logger.LogInformation("Item edit OnInitializedAsync");
         Item = await ItemService.GetItemAsync(categoryId, itemId);
         Categories = await CategoryService.ListCategoryAsync(restaurantId);
